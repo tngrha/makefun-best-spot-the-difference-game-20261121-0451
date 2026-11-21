@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Postcards — Spot the Difference</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="hud">
+  <div class="brand">
+    <h1>Twin Postcards</h1>
+    <p class="tagline">spot the difference</p>
+  </div>
+  <div class="stat" id="scene-stat">
+    <span class="stat-label">Scene</span>
+    <span class="stat-value" id="scene-name">Harbor Dawn</span>
+  </div>
+  <div class="stat" id="found-stat">
+    <span class="stat-label">Found</span>
+    <span class="stat-value" id="found-count">0 / 7</span>
+  </div>
+  <div class="stat remaining" id="remaining-stat">
+    <span class="stat-label">Still hidden</span>
+    <span class="stat-value" id="remaining-count">7</span>
+  </div>
+  <div class="stat" id="time-stat">
+    <span class="stat-label">Time</span>
+    <span class="stat-value" id="time-left">2:30</span>
+  </div>
+  <div class="stat" id="score-stat">
+    <span class="stat-label">Score</span>
+    <span class="stat-value" id="score">0</span>
+  </div>
+  <div class="actions">
+    <button id="hint-button" type="button">Hint <span id="hints-left">(3)</span></button>
+    <button id="restart-button" type="button">Restart</button>
+  </div>
+</header>
+<main id="stage">
+  <canvas id="game-canvas" width="1240" height="620"></canvas>
+  <div id="overlay" class="hidden">
+    <div id="overlay-card">
+      <h2 id="overlay-title">Scene complete!</h2>
+      <p id="overlay-text">You found every difference.</p>
+      <button id="overlay-button" type="button">Next scene</button>
+    </div>
+  </div>
+</main>
+<footer id="help">
+  Click a spot that differs between the two postcards — on either picture. Wrong clicks cost 25 points.
+  Keys: <b>H</b> hint · <b>R</b> restart · <b>N</b> next scene. Three scenes: Harbor Dawn, Forest Camp, Night Market.
+  Finish all three to unlock <b>Remix</b>: shuffled scenes, swapped postcards.
+</footer>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
