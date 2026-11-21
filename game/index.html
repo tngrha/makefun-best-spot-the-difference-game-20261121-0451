@@ -1,57 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Twin Postcards — Spot the Difference</title>
-<link rel="stylesheet" href="style.css">
+<title>Double Take — Spot the Difference Dioramas</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header id="hud">
-  <div class="brand">
-    <h1>Twin Postcards</h1>
-    <p class="tagline">spot the difference</p>
-  </div>
-  <div class="stat" id="scene-stat">
-    <span class="stat-label">Scene</span>
-    <span class="stat-value" id="scene-name">Harbor Dawn</span>
-  </div>
-  <div class="stat" id="found-stat">
-    <span class="stat-label">Found</span>
-    <span class="stat-value" id="found-count">0 / 7</span>
-  </div>
-  <div class="stat remaining" id="remaining-stat">
-    <span class="stat-label">Still hidden</span>
-    <span class="stat-value" id="remaining-count">7</span>
-  </div>
-  <div class="stat" id="time-stat">
-    <span class="stat-label">Time</span>
-    <span class="stat-value" id="time-left">2:30</span>
-  </div>
-  <div class="stat" id="score-stat">
-    <span class="stat-label">Score</span>
-    <span class="stat-value" id="score">0</span>
-  </div>
-  <div class="actions">
-    <button id="hint-button" type="button">Hint <span id="hints-left">(3)</span></button>
-    <button id="restart-button" type="button">Restart</button>
-  </div>
-</header>
-<main id="stage">
-  <canvas id="game-canvas" width="1240" height="620"></canvas>
-  <div id="overlay" class="hidden">
-    <div id="overlay-card">
-      <h2 id="overlay-title">Scene complete!</h2>
-      <p id="overlay-text">You found every difference.</p>
-      <button id="overlay-button" type="button">Next scene</button>
+<div id="app">
+  <header id="hud">
+    <div class="brand">
+      <h1>Double Take</h1>
+      <p class="tagline">SPOT THE DIFFERENCE DIORAMAS</p>
     </div>
-  </div>
-</main>
-<footer id="help">
-  Click a spot that differs between the two postcards — on either picture. Wrong clicks cost 25 points.
-  Keys: <b>H</b> hint · <b>R</b> restart · <b>N</b> next scene. Three scenes: Harbor Dawn, Forest Camp, Night Market.
-  Finish all three to unlock <b>Remix</b>: shuffled scenes, swapped postcards.
-</footer>
-<script type="module" src="src/main.js"></script>
+    <div class="chip scene-chip">
+      <span class="chip-label">DIORAMA</span>
+      <span class="chip-value" id="sceneName">Sunny Farmyard</span>
+      <span class="chip-sub" id="sceneStars">★☆☆☆☆</span>
+    </div>
+    <div class="chip">
+      <span class="chip-label">FOUND</span>
+      <span class="chip-value" id="foundCount">0 / 8</span>
+    </div>
+    <div class="chip warn">
+      <span class="chip-label">STILL HIDDEN</span>
+      <span class="chip-value" id="hiddenCount">8</span>
+    </div>
+    <div class="chip" id="timeChip">
+      <span class="chip-label">TIME</span>
+      <span class="chip-value" id="timeLeft">3:00</span>
+    </div>
+    <div class="chip">
+      <span class="chip-label">SCORE</span>
+      <span class="chip-value" id="scoreValue">0</span>
+      <span class="chip-sub" id="comboValue"></span>
+    </div>
+    <div class="hud-buttons">
+      <button id="hintBtn" class="btn gold" type="button">Hint (<span id="hintCount">3</span>)</button>
+      <button id="lensBtn" class="btn" type="button" aria-pressed="false">Lens</button>
+      <button id="soundBtn" class="btn" type="button" aria-pressed="true">Sound: On</button>
+      <button id="restartBtn" class="btn" type="button">Restart</button>
+    </div>
+  </header>
+
+  <nav id="sceneDots" aria-label="Choose a diorama"></nav>
+
+  <main id="stage">
+    <figure class="panel" id="panelA">
+      <figcaption class="panel-tag">EXHIBIT A</figcaption>
+      <canvas id="canvasA" width="600" height="450"></canvas>
+    </figure>
+    <figure class="panel" id="panelB">
+      <figcaption class="panel-tag">EXHIBIT B</figcaption>
+      <canvas id="canvasB" width="600" height="450"></canvas>
+    </figure>
+    <canvas id="lens" width="180" height="180" hidden></canvas>
+
+    <div id="overlay" hidden>
+      <div class="overlay-card">
+        <h2 id="overlayTitle">Diorama Complete!</h2>
+        <div id="overlayStars" class="overlay-stars">★★★</div>
+        <p id="overlayText"></p>
+        <div class="overlay-buttons">
+          <button id="overlayPrimary" class="btn gold big" type="button">Next Diorama</button>
+          <button id="overlaySecondary" class="btn big" type="button">Replay</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="help">
+    <p>Click a spot that differs between the two exhibits — on either picture. A wrong click costs 25 points and breaks your streak.
+    Keys: <b>H</b> hint · <b>L</b> lens · <b>R</b> restart · <b>N</b> next · <b>M</b> mute.
+    Five dioramas, fifty differences. Finish all five to unlock <b>Mirror Mode</b>: swapped exhibits, faster clock.</p>
+  </footer>
+</div>
+<script type="module" src="main.js"></script>
 </body>
 </html>
